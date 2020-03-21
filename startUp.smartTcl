@@ -1,0 +1,169 @@
+(format t "INIT DONE ~%")
+
+(defun format-locations (s obj colonmod at-sign) (declare (ignore colonmod)) (declare (ignore at-sign)) (format s "~s" (get-value obj 'name)))
+
+;;;;;;;;;;;;;;;;;;;;;
+
+;; MENU
+(defvar nmbr nil)
+;
+; SKILL - name / 3 input parameters maximum / 3 output parameters maximum
+(defvar name_skill NIL)
+(defvar in_1_skill NIL)
+(defvar in_2_skill NIL)
+(defvar in_3_skill NIL)
+(defvar out_1_skill NIL)
+(defvar out_2_skill NIL)
+(defvar out_3_skill NIL)
+;(defvar id_skill -1) ; TODO: identifying the executed skill using its ID
+;
+
+(defun menu()
+
+(loop
+
+  ;(execute '(nav1.tcb-save-navigation-map "ABRmap")) ; TODO - aim: to capture a good map
+
+  ;(let ((known-locations (tcl-kb-query-all :key '(is-a) :value '((is-a location)))))
+
+  (format t " ---------------------------------------------------- ~%")
+  (format t " ---------------------------------------------------- ~%")
+
+  ; Loop - Continuous reading of skills
+  (let ((obj_skill     (tcl-kb-query :key '(is-a) :value '((is-a skill)) ) ))
+  		(setf name_skill (get-value obj_skill 'name)) ; read the name of the skill to execute
+  		(setf in_1_skill (get-value obj_skill 'in_1)) ; read the parameter IN1 of the skill to execute
+  		(setf in_2_skill (get-value obj_skill 'in_2)) ; read the parameter IN2 of the skill to execute
+  		(setf in_3_skill (get-value obj_skill 'in_3)) ; read the parameter IN3 of the skill to execute
+  		(setf out_1_skill (get-value obj_skill 'out_1)) ; read the parameter OUT1 of the skill to execute
+  		(setf out_2_skill (get-value obj_skill 'out_2)) ; read the parameter OUT2 of the skill to execute  		
+  		(setf out_3_skill (get-value obj_skill 'out_3)) ; read the parameter OUT3 of the skill to execute
+  		(format t "---> name : ~s (~s, ~s, ~s) ~%" name_skill in_1_skill in_2_skill in_3_skill)
+  		(cond
+  		((string-equal name_skill "NIL") ;  
+  			)
+  		((string-equal name_skill "APPROACHLOCATION")
+  			(setf locations-var "HOME")
+  			(cond
+  			((equal in_1_skill 1.0)  ; Four options defined in the BehaviorNavigationScenario.smartTCl - poses a priori known
+  				(setf locations-var "HOME"))
+  			((equal in_1_skill 2.0)
+  				(setf locations-var "SOFA"))
+  			((equal in_1_skill 3.0)
+  				(setf locations-var "TABLE"))
+  			((equal in_1_skill 4.0)
+  				(setf locations-var "BENCH"))
+  			)
+            (setf locations-var (intern locations-var))
+  			(execute `(nav1.tcb-approach-location ,locations-var))
+  			(tcl-kb-update :key '(is-a) :value '((is-a skill_result)(name APPROACHLOCATION)) )  ;TODO: add id_skill
+  			)
+  		((string-equal name_skill "MOVEROBOTERPOSITION")
+  		    (setf angle (round in_1_skill)) ; TODO: round? is not a good solution for angles
+  		    (setf xpos (round in_2_skill))
+  		    (setf ypos (round in_3_skill))		
+  			(execute `(nav1.tcb-move-robot 'plain ,xpos ,ypos ,angle))
+ 			(tcl-kb-update :key '(is-a) :value '((is-a skill_result)(name MOVEROBOTERPOSITION)) )
+  			)
+  		((string-equal name_skill "MOVEROBOTERBACKWARDSLOCATION")
+  			(setf locations-var "HOME")
+  			(cond
+  			((equal in_1_skill 1.0)
+  				(setf locations-var "HOME"))
+  			((equal in_1_skill 2.0)
+  				(setf locations-var "SOFA"))
+  			((equal in_1_skill 3.0)
+  				(setf locations-var "TABLE"))
+  			((equal in_1_skill 4.0)
+  				(setf locations-var "BENCH"))
+  			)
+            (setf locations-var (intern locations-var))
+  			(execute `(nav1.tcb-move-robot 'backward ,locations-var))
+  			(tcl-kb-update :key '(is-a) :value '((is-a skill_result)(name MOVEROBOTERBACKWARDSLOCATION)) )
+  			)
+  		((string-equal name_skill "MOVEROBOTERBACKWARDSRELATIVE")
+  		    (setf dist (round in_1_skill))
+  			(execute `(nav1.tcb-move-robot 'backward-abs ,dist))
+ 			(tcl-kb-update :key '(is-a) :value '((is-a skill_result)(name MOVEROBOTERBACKWARDSRELATIVE)) )
+  			)
+  		((string-equal name_skill "MOVEROBOTERORIENTATEROBOTABS")
+  		    (setf angle (round in_1_skill))		; TODO: round? is not a good solution for angles
+  			(execute `(nav1.tcb-move-robot 'orientate-angle-absolute ,angle))
+  			(tcl-kb-update :key '(is-a) :value '((is-a skill_result)(name MOVEROBOTERORIENTATEROBOTABS)) )
+  			)  
+  		((string-equal name_skill "MOVEROBOTERORIENTATEROBOTREL")
+  		    (setf angle (round in_1_skill))		; TODO: round? is not a good solution for angles
+  			(execute `(nav1.tcb-move-robot 'orientate-angle-relative ,angle))
+  			(tcl-kb-update :key '(is-a) :value '((is-a skill_result)(name MOVEROBOTERORIENTATEROBOTREL)) )
+  			)
+  		((string-equal name_skill "STARTJOYSTICKNAVIGATION")		
+  			(execute '(nav1.tcb-joystick-navigation))
+ 			(tcl-kb-update :key '(is-a) :value '((is-a skill_result)(name STARTJOYSTICKNAVIGATION)) )
+  			)
+  	    ((string-equal name_skill "STOPJOYSTICKNAVIGATION")		
+  			(execute '(nav1.tcb-stop-joystick-navigation))
+ 			(tcl-kb-update :key '(is-a) :value '((is-a skill_result)(name STOPJOYSTICKNAVIGATION)) )
+  			) 		
+  		((string-equal name_skill "STARTREACTIVENAVIGATION")		
+  			(execute '(nav1.tcb-reactive-navigation))
+ 			(tcl-kb-update :key '(is-a) :value '((is-a skill_result)(name STARTREACTIVENAVIGATION)) )
+  			)
+  	    ((string-equal name_skill "STOPREACTIVENAVIGATION")		
+  			(execute '(nav1.tcb-stop-reactive-navigation))
+ 			(tcl-kb-update :key '(is-a) :value '((is-a skill_result)(name STOPREACTIVENAVIGATION)) )
+  			)
+  	    ((string-equal name_skill "APPROACHWALL")		
+  			(execute '(nav1.tcb-approach-wall))
+ 			(tcl-kb-update :key '(is-a) :value '((is-a skill_result)(name APPROACHWALL)) )
+  			)
+  	    ((string-equal name_skill "LOADNAVIGATIONMAP")
+  			(setf map (string in_1_skill))
+  			(execute `(nav1.tcb-load-navigation-map ,map))
+  			(tcl-kb-update :key '(is-a) :value '((is-a skill_result)(name LOADNAVIGATIONMAP)) )
+  			) 
+  		((string-equal name_skill "INITNAVIGATION")		
+  			(execute '(nav1.tcb-init-navigation))
+  			(tcl-kb-update :key '(is-a) :value '((is-a skill_result)(name INITNAVIGATION)) )
+  			)   			
+  		((string-equal name_skill "ACTIVATELOCALIZATION")		
+  			(execute '(localizationModInst.tcb-activate-localization))
+  			(tcl-kb-update :key '(is-a) :value '((is-a skill_result)(name ACTIVATELOCALIZATION)) )
+  			)  			  			
+  		((string-equal name_skill "DEACTIVATELOCALIZATION")		
+  			(execute '(localizationModInst.tcb-deactivate-localization))
+ 			(tcl-kb-update :key '(is-a) :value '((is-a skill_result)(name DEACTIVATELOCALIZATION)) )
+  			)
+  		((string-equal name_skill "LOADMAP")
+  			(setf mapname (string-downcase in_1_skill))  ; mapname will arrive from the Executor in UPPERCASE but the .yaml file is in lowercase
+  			(execute `(localizationModInst.tcb-load-localization-map ,mapname))
+  			(tcl-kb-update :key '(is-a) :value '((is-a skill_result)(name LOADMAP)) )
+  			)
+  		((string-equal name_skill "SETROBOTPOSE")
+  		    (setf x (round in_1_skill))
+  		    (setf y (round in_2_skill))
+  		    (setf yaw (round in_3_skill))	; TODO: round? is not a good solution for angles	
+  			(execute `(localizationModInst.tcb-set-robot-pose ,x ,y ,yaw))
+ 			(tcl-kb-update :key '(is-a) :value '((is-a skill_result)(name SETROBOTPOSE)) )
+  			)
+  		((string-equal name_skill "TRIGGERGLOBALLOCALIZATION")		
+  			(execute '(localizationModInst.tcb-trigger-global-localization))
+ 			(tcl-kb-update :key '(is-a) :value '((is-a skill_result)(name TRIGGERGLOBALLOCALIZATION)) )
+  			)
+  		((string-equal name_skill "GETBASEPOSE")		
+  			(execute '(base.getBasePose => ?x ?y ?yaw))
+ 			(tcl-kb-update :key '(is-a) :value '((is-a skill_result)(name GETBASEPOSE)) ) ; TODO: test!!!!
+  			)  			  						
+  		)
+  		
+      ;)
+    
+;  (setf nmbr (parse-integer (read-line nil)))
+;  (format t "your choice: ~d ~%" nmbr)
+  
+;  (cond
+;    ((equal nmbr 0)
+;      (format t "bye bye ~%")
+;      (quit)))
+      )))
+
+(menu)
