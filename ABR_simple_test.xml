@@ -1,0 +1,50 @@
+<root main_tree_to_execute="BehaviorTree">
+
+    <BehaviorTree ID="BehaviorTree">
+        <SequenceStar>
+            <initNavigation />
+            <loadNavigationMap map="navigation-map" />
+            <loadMap mapname="localization-map.yaml" />
+            <triggerGlobalLocalization />
+            <setRobotPose x="0" y="0" yaw="0" />
+	    <activateLocalization />
+            <startReactiveNavigation />
+            <stopReactiveNavigation />
+            <moveRoboterPosition  x="1000" y="2000" approachRadius="0"/>            
+            <approachLocation  locationId="3"/>
+            <moveRoboterBackwardsLocation  locationID="1"/>
+            <moveRoboterBackwardsRelative  dist="500"/>
+            <moveRoboterOrientateRobotAbs  angleDeg="1"/>
+            <moveRoboterOrientateRobotRel  angleDeg="2"/>
+            <approachLocation  locationId="4"/>
+            <approachLocation  locationId="1"/>
+            <approachWall />
+            <startJoystickNavigation />
+            <stopJoystickNavigation />
+	    <deactivateLocalization />
+        </SequenceStar>
+    </BehaviorTree>
+
+    <TreeNodesModel>
+        <Action ID="initNavigation"/>
+        <Action ID="loadNavigationMap"/>
+        <Action ID="loadMap"/>
+        <Action ID="triggerGlobalLocalization"/>
+        <Action ID="setRobotPose"/>
+        <Action ID="activateLocalization"/>
+        <Action ID="startReactiveNavigation"/>
+        <Action ID="stopReactiveNavigation"/>
+        <Action ID="moveRoboterPosition"/>
+        <Action ID="approachLocation"/>
+        <Action ID="moveRoboterBackwardsLocation"/>
+        <Action ID="moveRoboterBackwardsRelative"/>
+        <Action ID="moveRoboterOrientateRobotAbs"/>
+        <Action ID="moveRoboterOrientateRobotRel"/>
+        <Action ID="approachWall"/>
+        <Action ID="startJoystickNavigation"/>
+        <Action ID="stopJoystickNavigation"/>
+        <Action ID="deactivateLocalization"/>
+    </TreeNodesModel>
+
+</root>
+
