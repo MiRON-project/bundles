@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<root>
- <BehaviorTree ID="Variant2">
-    <Sequence>
-       <Action ID="PlayWarningBeep" name="play_sound" sound="WarningBeep"/>
-    </Sequence>
- </BehaviorTree>
-</root>

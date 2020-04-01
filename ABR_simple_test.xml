@@ -3,8 +3,10 @@
     <BehaviorTree ID="BehaviorTree">
         <SequenceStar>
             <initNavigation />
-            <loadNavigationMap map="navigation-map" />
-            <loadMap mapname="localization-map.yaml" />
+	    <getBasePose x="{x_}" y="{y_}" yaw="{yaw_}" />
+            <!--
+	    <loadNavigationMap mapname="navigation-map" />
+            <loadMap mapname="localization-map" />
             <triggerGlobalLocalization />
             <setRobotPose x="0" y="0" yaw="0" />
 	    <activateLocalization />
@@ -22,6 +24,7 @@
             <startJoystickNavigation />
             <stopJoystickNavigation />
 	    <deactivateLocalization />
+	    !-->
         </SequenceStar>
     </BehaviorTree>
 

@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<root>
- <BehaviorTree ID="Variant1" >
-    <Sequence>
-       <Action ID="DisplayMessage" name="show_msg" message="{greetings}" output ="{answer}"/>
-    </Sequence>
- </BehaviorTree>
-</root>
