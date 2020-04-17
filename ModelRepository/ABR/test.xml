@@ -1,19 +1,22 @@
 <root main_tree_to_execute="BehaviorTree">
 
     <BehaviorTree ID="BehaviorTree">
-        <SequenceStar>
-            <initNavigation />
-	    <getBasePose x="{x_}" y="{y_}" yaw="{yaw_}" />
-            <!--
-	    <loadNavigationMap mapname="navigation-map" />
-            <loadMap mapname="localization-map" />
+        <SequenceStar>            
+			<!--	    
+			<initNavigation />
+			<getBasePose x="{x_}" y="{y_}" yaw="{yaw_}" />        
             <triggerGlobalLocalization />
             <setRobotPose x="0" y="0" yaw="0" />
-	    <activateLocalization />
+		    <activateLocalization />
             <startReactiveNavigation />
             <stopReactiveNavigation />
-            <moveRoboterPosition  x="1000" y="2000" approachRadius="0"/>            
-            <approachLocation  locationId="3"/>
+	    	!-->
+        	<peoplerecognition />            
+			<moveRoboterPosition  x="1000" y="2000" approachRadius="10"/>            
+			<!--	    
+			<loadNavigationMap mapname="navigation-map" />
+			<approachLocation locationId="1"/>
+			<loadMap mapname="localization-map" />                        
             <moveRoboterBackwardsLocation  locationID="1"/>
             <moveRoboterBackwardsRelative  dist="500"/>
             <moveRoboterOrientateRobotAbs  angleDeg="1"/>
@@ -23,8 +26,8 @@
             <approachWall />
             <startJoystickNavigation />
             <stopJoystickNavigation />
-	    <deactivateLocalization />
-	    !-->
+		    <deactivateLocalization />
+		    !-->
         </SequenceStar>
     </BehaviorTree>
 
@@ -47,6 +50,8 @@
         <Action ID="startJoystickNavigation"/>
         <Action ID="stopJoystickNavigation"/>
         <Action ID="deactivateLocalization"/>
+        <Action ID="peoplerecognition"/>
+        <Action ID="getPersonPose"/>
     </TreeNodesModel>
 
 </root>
