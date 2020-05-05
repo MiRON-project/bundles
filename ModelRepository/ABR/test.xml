@@ -1,58 +1,59 @@
 <root main_tree_to_execute="BehaviorTree">
-
-    <BehaviorTree ID="BehaviorTree">
-        <SequenceStar>            
-			<!--	    
+  <BehaviorTree ID="BehaviorTree">
+    <SequenceStar>            
+    <!--	    
 			<initNavigation />
 			<getBasePose x="{x_}" y="{y_}" yaw="{yaw_}" />        
-            <triggerGlobalLocalization />
-            <setRobotPose x="0" y="0" yaw="0" />
-		    <activateLocalization />
-            <startReactiveNavigation />
-            <stopReactiveNavigation />
-	    	!-->
-        	<peoplerecognition />            
+      <triggerGlobalLocalization />
+      <setRobotPose x="0" y="0" yaw="0" />
+      <activateLocalization />
+      <startReactiveNavigation />
+      <stopReactiveNavigation />
+    !-->
+			<getBaseCharging charging="{charging_}"/>
+    <!--	    
+			<peoplerecognition />            
 			<moveRoboterPosition  x="1000" y="2000" approachRadius="10"/>            
-			<!--	    
 			<loadNavigationMap mapname="navigation-map" />
 			<approachLocation locationId="1"/>
 			<loadMap mapname="localization-map" />                        
-            <moveRoboterBackwardsLocation  locationID="1"/>
-            <moveRoboterBackwardsRelative  dist="500"/>
-            <moveRoboterOrientateRobotAbs  angleDeg="1"/>
-            <moveRoboterOrientateRobotRel  angleDeg="2"/>
-            <approachLocation  locationId="4"/>
-            <approachLocation  locationId="1"/>
-            <approachWall />
-            <startJoystickNavigation />
-            <stopJoystickNavigation />
-		    <deactivateLocalization />
-		    !-->
-        </SequenceStar>
-    </BehaviorTree>
+      <moveRoboterBackwardsLocation  locationID="1"/>
+      <moveRoboterBackwardsRelative  dist="500"/>
+      <moveRoboterOrientateRobotAbs  angleDeg="1"/>
+      <moveRoboterOrientateRobotRel  angleDeg="2"/>
+      <approachLocation  locationId="4"/>
+      <approachLocation  locationId="1"/>
+      <approachWall />
+      <startJoystickNavigation />
+      <stopJoystickNavigation />
+      <deactivateLocalization />
+    !-->
+    </SequenceStar>
+  </BehaviorTree>
 
-    <TreeNodesModel>
-        <Action ID="initNavigation"/>
-        <Action ID="loadNavigationMap"/>
-        <Action ID="loadMap"/>
-        <Action ID="triggerGlobalLocalization"/>
-        <Action ID="setRobotPose"/>
-        <Action ID="activateLocalization"/>
-        <Action ID="startReactiveNavigation"/>
-        <Action ID="stopReactiveNavigation"/>
-        <Action ID="moveRoboterPosition"/>
-        <Action ID="approachLocation"/>
-        <Action ID="moveRoboterBackwardsLocation"/>
-        <Action ID="moveRoboterBackwardsRelative"/>
-        <Action ID="moveRoboterOrientateRobotAbs"/>
-        <Action ID="moveRoboterOrientateRobotRel"/>
-        <Action ID="approachWall"/>
-        <Action ID="startJoystickNavigation"/>
-        <Action ID="stopJoystickNavigation"/>
-        <Action ID="deactivateLocalization"/>
-        <Action ID="peoplerecognition"/>
-        <Action ID="getPersonPose"/>
-    </TreeNodesModel>
+  <TreeNodesModel>
+    <Action ID="initNavigation"/>
+    <Action ID="loadNavigationMap"/>
+    <Action ID="loadMap"/>
+    <Action ID="triggerGlobalLocalization"/>
+    <Action ID="setRobotPose"/>
+    <Action ID="activateLocalization"/>
+    <Action ID="startReactiveNavigation"/>
+    <Action ID="stopReactiveNavigation"/>
+    <Action ID="moveRoboterPosition"/>
+    <Action ID="approachLocation"/>
+    <Action ID="moveRoboterBackwardsLocation"/>
+    <Action ID="moveRoboterBackwardsRelative"/>
+    <Action ID="moveRoboterOrientateRobotAbs"/>
+    <Action ID="moveRoboterOrientateRobotRel"/>
+    <Action ID="approachWall"/>
+    <Action ID="startJoystickNavigation"/>
+    <Action ID="stopJoystickNavigation"/>
+    <Action ID="deactivateLocalization"/>
+    <Action ID="peoplerecognition"/>
+    <Action ID="getPersonPose"/>
+    <Action ID="getBaseCharging"/>
+  </TreeNodesModel>
 
 </root>
 
