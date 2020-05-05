@@ -287,6 +287,20 @@
 },
 {"skill" :
 	{ 
+		"name" : "getBaseCharging",
+		"skill-definition-fqn" : "CommNavigationObjects.MobileBaseModule.getBaseCharging",
+		"in-attribute" : {
+		},
+		"out-attribute" : {
+			"charging" : "Bool"
+		},
+		"results" : [ 
+			{ "result" : "SUCCESS", "result-value" : "OK" }
+		]
+	}
+},
+{"skill" :
+	{ 
 		"name" : "getPersonPose",
 		"skill-definition-fqn" : "CommObjectRecognitionObjects.objRecognitionModule.getPersonPose",
 		"in-attribute" : {
