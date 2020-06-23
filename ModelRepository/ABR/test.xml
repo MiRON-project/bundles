@@ -10,8 +10,14 @@
       <startReactiveNavigation />
       <stopReactiveNavigation />
     !-->
-			<getBaseCharging charging="{charging_}"/>
-    <!--	    
+      <moveRoboterPosition  x="1000" y="0" approachRadius="50"/> 
+      <moveRoboterPosition  x="1000" y="1000" approachRadius="50"/>   
+      <moveRoboterPosition  x="0" y="1000" approachRadius="50"/>   
+      <moveRoboterPosition  x="-1000" y="1000" approachRadius="50"/>   
+      <moveRoboterPosition  x="-1000" y="0" approachRadius="50"/>  
+			<moveRoboterPosition  x="-2000" y="0" approachRadius="50"/>            
+    <!--	   
+      <getBaseCharging charging="{charging_}"/> 
 			<peoplerecognition />            
 			<moveRoboterPosition  x="1000" y="2000" approachRadius="10"/>            
 			<loadNavigationMap mapname="navigation-map" />
