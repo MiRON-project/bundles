@@ -2,27 +2,25 @@
   <BehaviorTree ID="BehaviorTree">
     <SequenceStar>
       <!--	    
-			<initNavigation />
-			<getBasePose x="{x_}" y="{y_}" yaw="{yaw_}" />        
+      <initNavigation />
+      <getBasePose x="{x_}" y="{y_}" yaw="{yaw_}" />        
       <triggerGlobalLocalization />
       <setRobotPose x="0" y="0" yaw="0" />
       <activateLocalization />
       <startReactiveNavigation />
       <stopReactiveNavigation />
-    !-->
+      !-->
       <moveRoboterPosition x="1000" y="0" approachRadius="50"/>
-      <moveRoboterPosition x="1000" y="1000" approachRadius="50"/>
-      <moveRoboterPosition x="0" y="1000" approachRadius="50"/>
-      <moveRoboterPosition x="-1000" y="1000" approachRadius="50"/>
-      <moveRoboterPosition x="-1000" y="0" approachRadius="50"/>
-      <moveRoboterPosition x="-2000" y="0" approachRadius="50"/>
+      <moveRoboterPosition x="1100" y="0" approachRadius="50"/>
+      <moveRoboterPosition x="1200" y="0" approachRadius="50"/>
+      <moveRoboterPosition x="2300" y="0" approachRadius="50"/>
       <!--	   
       <getBaseCharging charging="{charging_}"/> 
-			<peoplerecognition />            
-			<moveRoboterPosition x="1000" y="2000" approachRadius="10"/>            
-			<loadNavigationMap mapname="navigation-map" />
-			<approachLocation locationId="1"/>
-			<loadMap mapname="localization-map" />                        
+      <peoplerecognition />            
+      <moveRoboterPosition x="1000" y="2000" approachRadius="10"/>            
+      <loadNavigationMap mapname="navigation-map" />
+      <approachLocation locationId="1"/>
+      <loadMap mapname="localization-map" />                        
       <moveRoboterBackwardsLocation locationID="1"/>
       <moveRoboterBackwardsRelative dist="500"/>
       <moveRoboterOrientateRobotAbs angleDeg="1"/>
@@ -39,15 +37,27 @@
 
   <TreeNodesModel>
     <Action ID="initNavigation"/>
-    <Action ID="loadNavigationMap"/>
+    <Action ID="loadNavigationMap">
+      <input_port default="navigation-map" name="mapname"/>
+    </Action>
     <Action ID="loadMap"/>
     <Action ID="triggerGlobalLocalization"/>
-    <Action ID="setRobotPose"/>
+    <Action ID="setRobotPose">
+      <input_port default="0" name="x"/>
+      <input_port default="0" name="y"/>
+      <input_port default="0" name="yaw"/>
+    </Action>
     <Action ID="activateLocalization"/>
     <Action ID="startReactiveNavigation"/>
     <Action ID="stopReactiveNavigation"/>
-    <Action ID="moveRoboterPosition"/>
-    <Action ID="approachLocation"/>
+    <Action ID="moveRoboterPosition">
+      <input_port default="0" name="x"/>
+      <input_port default="0" name="y"/>
+      <input_port default="50" name="approachRadius"/>
+    </Action>
+    <Action ID="approachLocation">
+      <input_port default="1" name="locationId"/>
+    </Action>
     <Action ID="moveRoboterBackwardsLocation"/>
     <Action ID="moveRoboterBackwardsRelative"/>
     <Action ID="moveRoboterOrientateRobotAbs"/>
@@ -57,8 +67,18 @@
     <Action ID="stopJoystickNavigation"/>
     <Action ID="deactivateLocalization"/>
     <Action ID="peoplerecognition"/>
-    <Action ID="getPersonPose"/>
-    <Action ID="getBaseCharging"/>
+    <Action ID="getPersonPose">
+      <output_port default="{x_}" name="x"/>
+      <output_port default="{y_}" name="y"/>
+      <output_port default="{yaw_}" name="yaw"/>
+    </Action>
+    <Action ID="getBaseCharging">
+      <output_port default="{charging}" name="charging"/>
+    </Action>
+    <Action ID="VariationAction">
+      <input_port default="{value}" name="value"/>
+      <input_port default="{key}" name="key"/>
+    </Action>
   </TreeNodesModel>
 
 </root>
