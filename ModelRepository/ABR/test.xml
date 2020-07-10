@@ -9,11 +9,11 @@
       <activateLocalization />
       <startReactiveNavigation />
       <stopReactiveNavigation />
-      !-->
       <moveRoboterPosition x="1000" y="0" approachRadius="50"/>
       <moveRoboterPosition x="1100" y="0" approachRadius="50"/>
       <moveRoboterPosition x="1200" y="0" approachRadius="50"/>
-      <moveRoboterPosition x="2300" y="0" approachRadius="50"/>
+      !-->
+      <moveRoboterPosition x="-2100" y="0" approachRadius="50"/>
       <!--	   
       <getBaseCharging charging="{charging_}"/> 
       <peoplerecognition />            

@@ -304,7 +304,7 @@
 		"name" : "getPersonPose",
 		"skill-definition-fqn" : "CommObjectRecognitionObjects.objRecognitionModule.getPersonPose",
 		"in-attribute" : {
-			"name" : "String"
+			"personname" : "String"
 		},
 		"out-attribute" : {
 			"x" : "Double",
