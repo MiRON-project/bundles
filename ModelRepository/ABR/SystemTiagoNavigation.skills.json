@@ -330,26 +330,20 @@
 			{ "result" : "ERROR", "result-value" : "0" }
 		]
 	}
-}
-]
-[
+},
 {"skill" :
 	{ 
-		"name" : "getBaseCharging",
-		"skill-definition-fqn" : "CommNavigationObjects.MobileBaseModule.getBaseCharging",
+		"name" : "objectplacement",
+		"skill-definition-fqn" : "DomainSpeech.domainSpeechModule.objectplacement",
 		"in-attribute" : {
+			"query" : "String"
 		},
 		"out-attribute" : {
-			"charging" : "Bool"
 		},
 		"results" : [ 
-			{ "result" : "SUCCESS", "result-value" : "OK" }
+			{ "result" : "SUCCESS", "result-value" : "OK" },
+			{ "result" : "ERROR", "result-value" : "0" }
 		]
 	}
 }
 ]
-[
-]
-[
-]
-
