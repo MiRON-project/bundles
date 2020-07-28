@@ -106,6 +106,9 @@
         <Action ID="stopJoystickNavigation"/>
         <Action ID="stopReactiveNavigation"/>
         <Action ID="triggerGlobalLocalization"/>
+        <Action ID="objectplacement">
+            <input_port default="0" name="query"/>
+        </Action>
     </TreeNodesModel>
     <!-- ////////// -->
 </root>
