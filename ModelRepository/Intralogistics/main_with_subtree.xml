@@ -8,6 +8,7 @@
             </Repeat>
             <Sequence>
                 <Action ID="objectplacement" query="WOODENBOX_0.1_0.3_0.3_0.3"/>
+                <Action ID="objectdrop" obj_index="-1"/>
             </Sequence>
         </Parallel>
     </BehaviorTree>
@@ -47,6 +48,9 @@
         </Action>
         <Action ID="objectplacement">
             <input_port name="query"/>
+        </Action>
+        <Action ID="objectdrop">
+            <input_port name="obj_index"/>
         </Action>
         <Action ID="peoplerecognition"/>
         <Action ID="setRobotPose">

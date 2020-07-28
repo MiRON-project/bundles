@@ -345,5 +345,20 @@
 			{ "result" : "ERROR", "result-value" : "0" }
 		]
 	}
+},
+{"skill" :
+	{ 
+		"name" : "objectdrop",
+		"skill-definition-fqn" : "DomainSpeech.domainSpeechModule.objectdrop",
+		"in-attribute" : {
+			"obj_index" : "Int"
+		},
+		"out-attribute" : {
+		},
+		"results" : [ 
+			{ "result" : "SUCCESS", "result-value" : "OK" },
+			{ "result" : "ERROR", "result-value" : "0" }
+		]
+	}
 }
 ]
