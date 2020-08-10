@@ -9,6 +9,7 @@
             <Sequence>
                 <Action ID="objectplacement" query="WOODENBOX_0.1_0.3_0.3_0.3"/>
                 <Action ID="objectdrop" obj_index="-1"/>
+                <Action ID="pathPlanner" number_of_waypoints="{number_of_waypoints_}" waypoints="{waypoints_}" x="1.61" y="7.76"/>
             </Sequence>
         </Parallel>
     </BehaviorTree>
@@ -46,11 +47,17 @@
             <input_port default="0" name="x"/>
             <input_port default="0" name="y"/>
         </Action>
+        <Action ID="objectdrop">
+            <input_port name="obj_index"/>
+        </Action>
         <Action ID="objectplacement">
             <input_port name="query"/>
         </Action>
-        <Action ID="objectdrop">
-            <input_port name="obj_index"/>
+        <Action ID="pathPlanner">
+            <output_port default="{number_of_waypoints_}" name="number_of_waypoints"/>
+            <output_port default="{waypoints_}" name="waypoints"/>
+            <input_port default="0" name="x"/>
+            <input_port default="0" name="y"/>
         </Action>
         <Action ID="peoplerecognition"/>
         <Action ID="setRobotPose">

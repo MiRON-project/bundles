@@ -360,5 +360,23 @@
 			{ "result" : "ERROR", "result-value" : "0" }
 		]
 	}
+},
+{"skill" :
+	{ 
+		"name" : "pathPlanner",
+		"skill-definition-fqn" : "CommNavigationObjects.NavigationModule.pathPlanner",
+		"in-attribute" : {
+			"x" : "Double",
+			"y" : "Double"
+		},
+		"out-attribute" : {
+			"waypoints" : "String",
+			"number_of_waypoints" : "Int"
+		},
+		"results" : [ 
+			{ "result" : "ERROR", "result-value" : "OBSTACLE" },
+			{ "result" : "SUCCESS", "result-value" : "OK" }
+		]
+	}
 }
 ]
