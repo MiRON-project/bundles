@@ -9,11 +9,23 @@
             <Sequence>
                 <Action ID="objectplacement" query="WOODENBOX_0.1_0.3_0.3_0.3"/>
                 <Action ID="objectdrop" obj_index="-1"/>
+                <Action ID="pathPlanner" number_of_waypoints="{number_of_waypoints_}" waypoints="{waypoints_}" x="1.61" y="7.76"/>
+                <Repeat num_cycles="{number_of_waypoints_}">
+                    <Sequence>
+                        <Action ID="ExecutePathAction" w_x="{_w_x}" w_y="{_w_y}" waypoints="{waypoints_}"/>
+                        <Action ID="moveRoboterPosition" approachRadius="100" x="{_w_x}" y="{_w_y}"/>
+                    </Sequence>
+                </Repeat>
             </Sequence>
         </Parallel>
     </BehaviorTree>
     <!-- ////////// -->
     <TreeNodesModel>
+        <Action ID="ExecutePathAction">
+            <output_port default="{_w_x}" name="w_x"/>
+            <output_port default="{_w_y}" name="w_y"/>
+            <input_port default="{waypoints_}" name="waypoints"/>
+        </Action>
         <Action ID="VariantAction">
             <output_port default="{variant}" name="value"/>
         </Action>
@@ -46,11 +58,17 @@
             <input_port default="0" name="x"/>
             <input_port default="0" name="y"/>
         </Action>
+        <Action ID="objectdrop">
+            <input_port name="obj_index"/>
+        </Action>
         <Action ID="objectplacement">
             <input_port name="query"/>
         </Action>
-        <Action ID="objectdrop">
-            <input_port name="obj_index"/>
+        <Action ID="pathPlanner">
+            <output_port default="{number_of_waypoints_}" name="number_of_waypoints"/>
+            <output_port default="{waypoints_}" name="waypoints"/>
+            <input_port default="0" name="x"/>
+            <input_port default="0" name="y"/>
         </Action>
         <Action ID="peoplerecognition"/>
         <Action ID="setRobotPose">
