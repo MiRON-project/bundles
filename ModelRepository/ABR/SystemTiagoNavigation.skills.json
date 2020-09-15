@@ -370,8 +370,8 @@
 			"y" : "Double"
 		},
 		"out-attribute" : {
-			"waypoints" : "String",
-			"number_of_waypoints" : "Int"
+			"number_of_waypoints" : "Int",
+			"waypoints" : "String"
 		},
 		"results" : [ 
 			{ "result" : "ERROR", "result-value" : "OBSTACLE" },
