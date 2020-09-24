@@ -2,22 +2,13 @@
 <root main_tree_to_execute="BehaviorTree">
     <!-- ////////// -->
     <BehaviorTree ID="BehaviorTree">
-        <Parallel threshold="1">
+        <Parallel failure_threshold="1" success_threshold="1">
             <Repeat num_cycles="-1">
                 <Action ID="VariantAction" value="{variant}"/>
             </Repeat>
             <Sequence>
                 <Action ID="objectplacement" query="WOODENBOX_0.1_0.3_0.3_0.3"/>
-                <Sequence name="GoTo">
-                    <Action ID="pathPlanner" number_of_waypoints="{number_of_waypoints_}" waypoints="{waypoints_}" x="1.61" y="7.76"/>
-                    <Condition ID="CheckPositiveCondition" value="{number_of_waypoints_}"/>
-                    <Repeat num_cycles="{number_of_waypoints_}">
-                        <Sequence>
-                            <Action ID="ExecutePathAction" w_x="{_w_x}" w_y="{_w_y}" waypoints="{waypoints_}"/>
-                            <Action ID="moveRoboterPosition" approachRadius="100" x="{_w_x}" y="{_w_y}"/>
-                        </Sequence>
-                    </Repeat>
-                </Sequence>
+                <SubTreePlus ID="GoTo" __shared_blackboard="false" x_input="1.61" y_input="7.76"/>
                 <Action ID="objectdrop" obj_index="-1"/>
             </Sequence>
         </Parallel>
@@ -45,11 +36,11 @@
             <output_port default="{_w_y}" name="w_y"/>
             <input_port default="{waypoints_}" name="waypoints"/>
         </Action>
-        <SubTree ID="GoTo">
+        <SubTreePlus ID="GoTo">
             <input_port default="false" name="__shared_blackboard">If false (default), the Subtree has an isolated blackboard and needs port remapping</input_port>
             <input_port default="1.61" name="x_input"/>
             <input_port default="7.76" name="y_input"/>
-        </SubTree>
+        </SubTreePlus>
         <Action ID="VariantAction">
             <output_port default="{variant}" name="value"/>
         </Action>
